@@ -83,7 +83,7 @@ class LoginWindow:
                         ENTERED_USERNAME, ENTERED_PASSWORD = username_field.get_text(), password_field.get_text()
 
                         all_users = DatabaseConnector.select_all()
-                        bubble_sort(all_users)
+                        bubble_sort(all_users, sort_by="username", order="asc")
                         user_index = binary_search(all_users, ENTERED_USERNAME)
                         if user_index is None:
                             response_label.set_text("Invalid username")

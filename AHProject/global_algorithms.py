@@ -59,10 +59,10 @@ def binary_search(array, target):
         middle = int((high + low) / 2)
 
         if array[middle].username < target:
-            high = middle - 1
+            low = middle + 1
 
         elif array[middle].username > target:
-            low = middle + 1
+            high = middle - 1
 
         else:
             return middle

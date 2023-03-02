@@ -58,7 +58,9 @@ class DatabaseConnector:
         select_query = f"SELECT * FROM {DatabaseConnector.table}"
 
         DatabaseConnector.cursor.execute(select_query)
-        return [User(user[0], user[1], user[2], user[3]) for user in DatabaseConnector.cursor.fetchall()]
+        array_of_records = [User(user[0], user[1], user[2], user[3]) for user in DatabaseConnector.cursor.fetchall()]
+        print(array_of_records)
+        return array_of_records
 
     @staticmethod
     def get_username(userID):
