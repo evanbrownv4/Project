@@ -1,28 +1,12 @@
 import random
-from dataclasses import dataclass
+from user import User
 
-@dataclass
-class User:
-    username: str
-    score: int
-
-    def __str__(self):
-        return f"{self.username}'s score: {self.score}"
-
-def bubble_sort(unsorted_array, sort_by="username", order="desc"):
+def bubble_sort(unsorted_array, sort_by="username"):
     if sort_by == "username":
-        if order == "asc":
-            def sort_condition(): return unsorted_array[j].username > unsorted_array[j + 1].username
-        elif order == "desc":
-            def sort_condition():
-                return unsorted_array[j].username < unsorted_array[j + 1].username
+        def sort_condition(): return unsorted_array[j].username > unsorted_array[j + 1].username
 
     elif sort_by == "score":
-        if order == "asc":
-            def sort_condition(): return unsorted_array[j].score > unsorted_array[j + 1].score
-        elif order == "desc":
-            def sort_condition():
-                return unsorted_array[j].score < unsorted_array[j + 1].score
+        def sort_condition(): return unsorted_array[j].score > unsorted_array[j + 1].score
 
     ARRAY_LENGTH = len(unsorted_array)
     SWAPPED = False

@@ -308,7 +308,7 @@ class LoginWindow:
                             continue
 
                         all_users = DatabaseConnector.select_all()
-                        bubble_sort(all_users)
+                        bubble_sort(unsorted_array=all_users)
 
                         user_index = binary_search(all_users, ENTERED_USERNAME)
 

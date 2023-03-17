@@ -9,9 +9,8 @@ class HighscoreTable:
     def get_top_ten():
         all_users = DatabaseConnector.select_all()
         # Sort users by score
-        bubble_sort(all_users, sort_by="score", order="desc")
-        top_ten = all_users[:10]
-        print(top_ten)
+        bubble_sort(all_users, sort_by="score",)
+        top_ten = all_users[:10:-1]
         return top_ten
 
     @staticmethod
