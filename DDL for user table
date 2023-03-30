@@ -1,0 +1,9 @@
+CREATE TABLE "users" (
+	"userID" int NOT NULL AUTO_INCREMENT,
+	"username" varchar(30) NOT NULL,
+	"password" varchar(30) NOT NULL,
+	"score" int NOT NULL,
+	PRIMARY KEY ("userID),
+	UNIQUE KEY "userID_UNIQUE" ("userID"),
+	UNIQUE KEY "username_UNIQUE" ("username")
+)
