@@ -8,9 +8,8 @@ class HighscoreTable:
     @staticmethod
     def get_top_ten():
         all_users = DatabaseConnector.select_all()
-        # Sort users by score
-        bubble_sort(all_users, sort_by="score",)
-        top_ten = all_users[:10:-1]
+        bubble_sort(all_users, sort_by="score")
+        top_ten = all_users[::-1][:10]
         return top_ten
 
     @staticmethod
@@ -38,6 +37,10 @@ class HighscoreTable:
 
     @staticmethod
     def search_users_score(search_username):
+
+        if search_username == "":
+            return "Field cannot be empty"
+
         all_users = DatabaseConnector.select_all()
         bubble_sort(all_users, sort_by="username")
 

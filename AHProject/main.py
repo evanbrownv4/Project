@@ -2,7 +2,7 @@ import pygame
 import pygame_gui
 from pygame_login_window import LoginWindow
 
-from pongDemo import Game
+from pong_demo import Game
 
 pygame.init()
 

@@ -82,9 +82,17 @@ class LoginWindow:
 
                         ENTERED_USERNAME, ENTERED_PASSWORD = username_field.get_text(), password_field.get_text()
 
+                        EMPTY_FIELD = ENTERED_USERNAME == "" or ENTERED_PASSWORD == ""
+
+                        if EMPTY_FIELD:
+                            response_label.set_text("Fields cannot be empty")
+                            response_label.rebuild()
+                            continue
+
                         all_users = DatabaseConnector.select_all()
-                        bubble_sort(all_users, sort_by="username", order="asc")
+                        bubble_sort(all_users, sort_by="username")
                         user_index = binary_search(all_users, ENTERED_USERNAME)
+
                         if user_index is None:
                             response_label.set_text("Invalid username")
                             continue
@@ -117,7 +125,7 @@ class LoginWindow:
 
     def get_create_screen(self):
 
-        container_rect = pygame.Rect((0, 0), (200, 250))
+        container_rect = pygame.Rect((0, 0), (400, 250))
         container_rect.centerx, container_rect.centery = round(self.resolution[0] / 2), round(self.resolution[1] / 2)
 
         create_container = pygame_gui.core.UIContainer(
@@ -126,42 +134,42 @@ class LoginWindow:
         )
 
         pygame_gui.elements.UILabel(
-            relative_rect=pygame.Rect((50, 10), (100, 30)),
+            relative_rect=pygame.Rect((150, 10), (100, 30)),
             text="Create User",
             manager=self.ui_manager,
             container=create_container
         )
 
         username_field = pygame_gui.elements.UITextEntryLine(
-            relative_rect=pygame.Rect((0, 50), (200, 50)),
+            relative_rect=pygame.Rect((100, 50), (200, 50)),
             placeholder_text="Username",
             manager=self.ui_manager,
             container=create_container
         )
 
         password_field = pygame_gui.elements.UITextEntryLine(
-            relative_rect=pygame.Rect((0, 100), (200, 50)),
+            relative_rect=pygame.Rect((100, 100), (200, 50)),
             placeholder_text="Password",
             manager=self.ui_manager,
             container=create_container
         )
 
         submit_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((0, 150), (100, 50)),
+            relative_rect=pygame.Rect((100, 150), (100, 50)),
             text="Submit",
             manager=self.ui_manager,
             container=create_container
         )
 
         back_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((100, 150), (100, 50)),
+            relative_rect=pygame.Rect((200, 150), (100, 50)),
             text="Back",
             manager=self.ui_manager,
             container=create_container
         )
 
         response_label = pygame_gui.elements.UILabel(
-            relative_rect=pygame.Rect((20, 210), (160, 30)),
+            relative_rect=pygame.Rect((0, 210), (400, 30)),
             text="",
             manager=self.ui_manager,
             container=create_container
@@ -191,9 +199,7 @@ class LoginWindow:
 
                         EMPTY_FIELD = ENTERED_USERNAME == "" or ENTERED_PASSWORD == ""
                         if EMPTY_FIELD:
-                            response_label.set_text(
-                                "Please enter a value"
-                            )
+                            response_label.set_text("Fields cannot be empty")
                             response_label.rebuild()
                             continue
 
@@ -205,7 +211,7 @@ class LoginWindow:
                             running = False
                         else:
                             response_label.set_text(
-                                "A user with this username already exists, please enter a new username."
+                                "A user with this username already exists."
                             )
                             response_label.rebuild()
 

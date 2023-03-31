@@ -59,7 +59,6 @@ class DatabaseConnector:
 
         DatabaseConnector.cursor.execute(select_query)
         array_of_records = [User(user[0], user[1], user[2], user[3]) for user in DatabaseConnector.cursor.fetchall()]
-        print(array_of_records)
         return array_of_records
 
     @staticmethod
